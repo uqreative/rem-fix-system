@@ -1,0 +1,47 @@
+@charset "utf-8";
+@layer reset, form;
+
+:root {
+	--header-height: clamp(60rem, calc(100 / var(--container) * 100vw), 100rem);
+	--container-narrow: 1280;
+	--container: 1400;
+	--container-wide: 1762;
+	--container-scale: 0.92;
+	--container-edge-offset: calc((1 - var(--container-scale)) / 2 * 100vw);
+	--primary: #1a509e;
+	--secondary: #e87a4a;
+	--placeholder-bg: #444444;
+	--white: #fff;
+	--black: #222;
+	--border-color: #ddd; /* components.css 공유 */
+	--border-color-hover: #444; /* components.css 공유 */
+	--font-pret: "Pretendard Variable", "Pretendard", "Malgun Gothic", "Dotum", "Gulim", sans-serif;
+	--font-sans: var(--font-pret);
+	--toggle-nav-button-size: 24rem;
+	/* 
+     * 사이트 공통 이미지 플레이스홀더 변수
+     * 
+     * - --placeholder-image-bg : 기본 배경색 (이미지 로딩 실패 또는 미설정 시 표시)
+     * - --placeholder-image-url : 플레이스홀더 로고 이미지 경로
+     * - --placeholder-image-size : 플레이스홀더 로고 크기 (최대 크기 제한 포함)
+     *
+     * layout.css 에 선언하여 전역에서 동일한 디자인 컨셉 유지 및 관리.
+     * 접근성 향상을 위해 이미지가 없을 경우에도 시각적 빈 공간이 없도록 함.
+     */
+	--placeholder-image-bg: #e0e0e0;
+	--placeholder-image-url: url("/assets/images/layouts/placeholder-image.png");
+	--placeholder-image-size: min(60%, 200rem);
+}
+@supports (interpolate-size: allow-keywords) {
+	:root {
+		interpolate-size: allow-keywords;
+	}
+}
+
+/* #region view transition, scroll behavior */
+/* html{ scroll-padding-top: var(--header-height); } */
+@media (prefers-reduced-motion: no-preference) {
+	/* @view-transition  { navigation: auto; } */
+	html { scroll-behavior: smooth; }
+}
+/* #endregion view transition, scroll behavior */

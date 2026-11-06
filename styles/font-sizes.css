@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+/*
+1. 기본 원리: clamp() 함수를 활용한 반응형 글꼴 크기 구현
+2. 화면 크기에 따라 최소값과 최대값 사이에서 글꼴 크기를 동적으로 조정
+3. 구문 형식: clamp(최소값, 계산식, 최대값)
+4. 계산 방식: calc((100 / 기준해상도) * 1vw 계수) - 화면 너비에 비례하는 글꼴 크기 계산
+
+구현 방식:
+- 기준 해상도에서 1rem = 1px 비율 설정
+- 기준 해상도보다 클 때: 비례 계수 유지하며 확대 비율 적용
+- 기준 해상도보다 작을 때: 화면 크기에 맞춰 최소값 유지하며 글꼴 크기 자동 조절
+- 1921px 이상 화면: 1920px 해상도 기준 비율 유지, 최대 100배까지 확대
+- 1919px ~ 1280px 구간: 화면 크기에 따른 글꼴 크기 조정, 컨테이너 크기에 맞춰 축소 처리
+
+## 16px 기준 글꼴 크기 배율표
+| 1x | 1.125x | 1.25x | 1.375x | 1.5x  | 1.625x | 1.75x | 2x | 2.25x | 2.5x | 3x |
+| 16 | 18     | 20    | 22     | 24    | 26     | 28    | 32 | 36    | 40   | 48 |
+*/
+
+:root{
+	--font-min-xl: 32rem; /* 60–70 */
+	--font-min-lg: 28rem; /* 50–59 */
+	--font-min-md: 26rem; /* 36–49 */
+	--font-min-sm: 24rem; /* 26–35 */
+	--font-min-xs: 16rem; /* 16–25 */
+	--font-min-xxs: 14rem; /* 15 */
+	--font-min-minimum: 12rem; /* 12 */
+
+	--font-size-heading-xl: var(--font-size-32);
+	--font-size-heading-md: var(--font-size-24);
+	--font-size-body-lg: var(--font-size-18);
+	--font-size-body: var(--font-size-16);
+	--font-size-caption: var(--font-size-13);
+
+	--font-size-70: clamp(var(--font-min-xl), calc(70 / var(--container) * 100vw), 70rem);
+	--font-size-69: clamp(var(--font-min-xl), calc(69 / var(--container) * 100vw), 69rem);
+	--font-size-68: clamp(var(--font-min-xl), calc(68 / var(--container) * 100vw), 68rem);
+	--font-size-67: clamp(var(--font-min-xl), calc(67 / var(--container) * 100vw), 67rem);
+	--font-size-66: clamp(var(--font-min-xl), calc(66 / var(--container) * 100vw), 66rem);
+	--font-size-65: clamp(var(--font-min-xl), calc(65 / var(--container) * 100vw), 65rem);
+	--font-size-64: clamp(var(--font-min-xl), calc(64 / var(--container) * 100vw), 64rem);
+	--font-size-63: clamp(var(--font-min-xl), calc(63 / var(--container) * 100vw), 63rem);
+	--font-size-62: clamp(var(--font-min-xl), calc(62 / var(--container) * 100vw), 62rem);
+	--font-size-61: clamp(var(--font-min-xl), calc(61 / var(--container) * 100vw), 61rem);
+	--font-size-60: clamp(var(--font-min-xl), calc(60 / var(--container) * 100vw), 60rem);
+
+	--font-size-59: clamp(var(--font-min-lg), calc(59 / var(--container) * 100vw), 59rem);
+	--font-size-58: clamp(var(--font-min-lg), calc(58 / var(--container) * 100vw), 58rem);
+	--font-size-57: clamp(var(--font-min-lg), calc(57 / var(--container) * 100vw), 57rem);
+	--font-size-56: clamp(var(--font-min-lg), calc(56 / var(--container) * 100vw), 56rem);
+	--font-size-55: clamp(var(--font-min-lg), calc(55 / var(--container) * 100vw), 55rem);
+	--font-size-54: clamp(var(--font-min-lg), calc(54 / var(--container) * 100vw), 54rem);
+	--font-size-53: clamp(var(--font-min-lg), calc(53 / var(--container) * 100vw), 53rem);
+	--font-size-52: clamp(var(--font-min-lg), calc(52 / var(--container) * 100vw), 52rem);
+	--font-size-51: clamp(var(--font-min-lg), calc(51 / var(--container) * 100vw), 51rem);
+	--font-size-50: clamp(var(--font-min-lg), calc(50 / var(--container) * 100vw), 50rem);
+
+	--font-size-49: clamp(var(--font-min-md), calc(49 / var(--container) * 100vw), 49rem);
+	--font-size-48: clamp(var(--font-min-md), calc(48 / var(--container) * 100vw), 48rem);
+	--font-size-47: clamp(var(--font-min-md), calc(47 / var(--container) * 100vw), 47rem);
+	--font-size-46: clamp(var(--font-min-md), calc(46 / var(--container) * 100vw), 46rem);
+	--font-size-45: clamp(var(--font-min-md), calc(45 / var(--container) * 100vw), 45rem);
+	--font-size-44: clamp(var(--font-min-md), calc(44 / var(--container) * 100vw), 44rem);
+	--font-size-43: clamp(var(--font-min-md), calc(43 / var(--container) * 100vw), 43rem);
+	--font-size-42: clamp(var(--font-min-md), calc(42 / var(--container) * 100vw), 42rem);
+	--font-size-41: clamp(var(--font-min-md), calc(41 / var(--container) * 100vw), 41rem);
+	--font-size-40: clamp(var(--font-min-md), calc(40 / var(--container) * 100vw), 40rem);
+	--font-size-39: clamp(var(--font-min-md), calc(39 / var(--container) * 100vw), 39rem);
+	--font-size-38: clamp(var(--font-min-md), calc(38 / var(--container) * 100vw), 38rem);
+	--font-size-37: clamp(var(--font-min-md), calc(37 / var(--container) * 100vw), 37rem);
+	--font-size-36: clamp(var(--font-min-md), calc(36 / var(--container) * 100vw), 36rem);
+
+	--font-size-35: clamp(var(--font-min-sm), calc(35 / var(--container) * 100vw), 35rem);
+	--font-size-34: clamp(var(--font-min-sm), calc(34 / var(--container) * 100vw), 34rem);
+	--font-size-33: clamp(var(--font-min-sm), calc(33 / var(--container) * 100vw), 33rem);
+	--font-size-32: clamp(var(--font-min-sm), calc(32 / var(--container) * 100vw), 32rem);
+	--font-size-31: clamp(var(--font-min-sm), calc(31 / var(--container) * 100vw), 31rem);
+	--font-size-30: clamp(var(--font-min-sm), calc(30 / var(--container) * 100vw), 30rem);
+	--font-size-29: clamp(var(--font-min-sm), calc(29 / var(--container) * 100vw), 29rem);
+	--font-size-28: clamp(var(--font-min-sm), calc(28 / var(--container) * 100vw), 28rem);
+	--font-size-27: clamp(var(--font-min-sm), calc(27 / var(--container) * 100vw), 27rem);
+	--font-size-26: clamp(var(--font-min-sm), calc(26 / var(--container) * 100vw), 26rem);
+
+	--font-size-25: clamp(var(--font-min-xs), calc(25 / var(--container) * 100vw), 25rem);
+	--font-size-24: clamp(var(--font-min-xs), calc(24 / var(--container) * 100vw), 24rem);
+	--font-size-23: clamp(var(--font-min-xs), calc(23 / var(--container) * 100vw), 23rem);
+	--font-size-22: clamp(var(--font-min-xs), calc(22 / var(--container) * 100vw), 22rem);
+	--font-size-21: clamp(var(--font-min-xs), calc(21 / var(--container) * 100vw), 21rem);
+	--font-size-20: clamp(var(--font-min-xs), calc(20 / var(--container) * 100vw), 20rem);
+	--font-size-20-to-14: clamp(14rem, calc(20 / var(--container) * 100vw), 20rem);
+	--font-size-19: clamp(var(--font-min-xs), calc(19 / var(--container) * 100vw), 19rem);
+	--font-size-18: clamp(var(--font-min-xs), calc(18 / var(--container) * 100vw), 18rem);
+	--font-size-18-to-14: clamp(14rem, calc(18 / var(--container) * 100vw), 18rem);
+	--font-size-17: clamp(var(--font-min-xs), calc(17 / var(--container) * 100vw), 17rem);
+	--font-size-16: clamp(var(--font-min-xxs), calc(16 / var(--container) * 100vw), 16rem);
+	--font-size-16-to-12: clamp(12rem, calc(16 / var(--container) * 100vw), 16rem);
+	--font-size-15: clamp(var(--font-min-xxs), calc(15 / var(--container) * 100vw), 15rem);
+	--font-size-15-to-12: clamp(12rem, calc(15 / var(--container) * 100vw), 15rem);
+	
+	--font-size-14: clamp(var(--font-min-minimum), calc(14 / var(--container) * 100vw), 14rem);
+	--font-size-13: clamp(var(--font-min-minimum), calc(13 / var(--container) * 100vw), 13rem);
+}
+
+@media(min-width:1921px){
+	html{ font-size: clamp(0px, calc((100 / 1920) * 1vw), 100px); }
+}
+@media(width:1920px){
+	/*
+	1920px 해상도 환경: 글꼴 크기 6.25% 고정값 적용
+	브라우저 기본 글꼴 크기 대응을 위한 최적화 설정
+	다른 해상도에서는 clamp 함수로 동적 크기 조정을 하지만,
+	1920px에서는 브라우저 기본 글꼴 크기 기준 6.25% 고정 비율로
+	일관된 글꼴 표시 보장
+	*/
+	html{ font-size: 6.25%; }
+}
+@media(max-width:1919px) and (min-width:1280px){
+	html{ font-size: clamp(0px, calc((100 / var(--container)) * var(--container-scale) * 1vw), 1px); }
+}
+@media(max-width:1279px) and (min-width:768px){
+	/* 태블릿 화면 환경: 가독성 향상을 위한 0.875 계수 적용, 16rem이 14px로 표시되도록 비율 세부 조정 */
+	/* html{ font-size: clamp(0px, calc((100 / 768) * 875vw), 1px); } */
+	html{ font-size: clamp(0px, calc((100 / 768) * 1vw), 1px); }
+}
+@media(max-width:767px){
+	html{ font-size: clamp(0px, calc((100 / 360) * 1vw), 1px); }
+}
